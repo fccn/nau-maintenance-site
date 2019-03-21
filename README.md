@@ -7,9 +7,12 @@ The html, css and images are copied to a ceph bucket an showned to client if the
 Because the site don't is a fat html, it has imported css and images, and because those could be on a different location where the index.html is rendered.
 So we have to update those location.
 
-## Deploy / update site
+## Update site with absolute URLs
+```
+./update-site-url.sh https://shared.static.dev.nau.fccn.pt/maintenance-site/
+```
 
-### Development environment
+## Update site for environment
 
 #### remove existing site
 
@@ -20,7 +23,7 @@ AWS_ACCESS_KEY_ID=XXXXXXXXXXXXXXXXX AWS_SECRET_ACCESS_KEY=YYYYYYYYYYYYYYYYYYYYYY
 
 #### put site
 ```
-AWS_ACCESS_KEY_ID=XXXXXXXXXXXXXXXXX AWS_SECRET_ACCESS_KEY=YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY s3cmd --host 10.0.12.62 --host-bucket nau-dev-shared --no-ssl put site "s3://nau-dev-shared/maintenance-site" --recursive --acl-public --no-mime-magic 
+AWS_ACCESS_KEY_ID=XXXXXXXXXXXXXXXXX AWS_SECRET_ACCESS_KEY=YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY s3cmd --host 10.0.12.62 --host-bucket nau-dev-shared --no-ssl put target/* "s3://nau-dev-shared/maintenance-site/" --recursive --acl-public --no-mime-magic 
 ```
 
 #### Verify site
