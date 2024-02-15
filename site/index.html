@@ -12,7 +12,9 @@
 </head>
 
 <script>
-    var currentLanguage = null;
+    let currentLanguage = null;
+
+    const showOpDetails = true;
 
     const intlTranslations = {
         en: {
@@ -53,6 +55,12 @@
 
     document.addEventListener("DOMContentLoaded", function () {
         setLanguage(getNavigatorLanguage());
+        
+        if (showOpDetails){
+            document.getElementById('op-details').classList.remove('hide');
+        } else {
+            document.getElementById('op-details').classList.add('hide');
+        }
 
         const languageSwitcher = document.getElementById('changeLang');
         languageSwitcher.addEventListener('click', function (element) {
@@ -129,7 +137,7 @@
         margin: 0.5rem;
     }
 
-    .op-details {
+    #op-details {
         background-color: rgba(255, 255, 255, 0.9);
         display: inline-block;
         color: var(--bg-color-alt);
@@ -137,6 +145,10 @@
         border-radius: 15px;
         box-shadow: 0px 5px 12px #0639a8;
         font-size: 1.5rem;
+    }
+
+    .hide {
+        display: none !important;
     }
 
     .contacts {
@@ -236,7 +248,7 @@
             <p id="maintenance-shortmessage" class="message" style="display:block;">Estamos a atualizar a plataforma
                 NAU.<br>Prometemos que vai ser rápido!</p>
             <!-- Operation detail box -->
-            <div class="op-details" style="display:block;">
+            <div id="op-details">
                 <span class="eta">
                     <svg width="16" height="16" fill="#286cfd" version="1.1" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
