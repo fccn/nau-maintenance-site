@@ -12,8 +12,10 @@
 </head>
 
 <script>
+    // stores the current language
     let currentLanguage = null;
 
+    // feature toggle. shows or hides the operation details
     const showOpDetails = true;
 
     const intlTranslations = {
@@ -39,6 +41,11 @@
         return navigator.language.split('-')[0] == 'pt' ? 'pt' : 'en';
     }
 
+    function getCookieValue() {
+        let cookieLang = decodeURIComponent(document.cookie).split(';').find(cookie => cookie.includes('nau-language-preference'));
+        return cookieLang ? cookieLang.split('=')[1] : null;
+    }
+
     function setLanguage(lang) {
         currentLanguage = lang;
 
@@ -53,16 +60,22 @@
 
     }
 
-    document.addEventListener("DOMContentLoaded", function () {
-        setLanguage(getNavigatorLanguage());
-        
-        if (showOpDetails){
-            document.getElementById('op-details').classList.remove('hide');
+    function displayOpDetails() {
+        const opDetails = document.getElementById('op-details');
+        if (showOpDetails) {
+            opDetails.classList.remove('hide');
         } else {
-            document.getElementById('op-details').classList.add('hide');
+            opDetails.classList.add('hide');
         }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        setLanguage(getCookieValue() || getNavigatorLanguage());
+
+        displayOpDetails();
 
         const languageSwitcher = document.getElementById('changeLang');
+
         languageSwitcher.addEventListener('click', function (element) {
             element.preventDefault();
             element.currentTarget.innerHTML = currentLanguage == 'pt' ? 'Português' : 'English';
