@@ -15,6 +15,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Install gettext package
+        run: sudo apt-get install -y s3cmd
+
       - name: Deploy to all environments
         run: ./deploy.sh
         env:
