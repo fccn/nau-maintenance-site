@@ -16,26 +16,30 @@
     let currentLanguage = null;
 
     // feature toggle. shows or hides the operation details
-    const showOpDetails = true;
+    const showOpDetails = false;
 
     const intlTranslations = {
         en: {
-            title: 'Under maintenance',
-            shortmessage: 'We are updating the NAU platform.<br>We promise it will be quick!',
-            esttime: 'Estimated time',
-            message: 'For additional information, please check out our user knowledge base at',
-            langchangemessage: 'Mudar língua para Português'
+            title: "Under maintenance",
+            // shortmessage: 'We are updating the NAU platform.<br>We promise it will be quick!',
+            shortmessage: "Please come back later, we'll try to be brief!",
+            esttime: "Estimated time",
+            message: "For additional information, please check out our user knowledge base at",
+            langchangemessage: "Mudar língua para Português",
+            technicalinfo: "Informação técnica do estado da NAU",
         },
         pt: {
             title: 'Em manutenção',
-            shortmessage: 'Estamos a atualizar a plataforma NAU.<br>Prometemos que será rápido!',
-            esttime: 'Tempo estimado',
-            message: 'Para informações adicionais por favor o site de ajuda ao utilizador em',
-            langchangemessage: 'Change language to English'
+            // shortmessage: 'Estamos a atualizar a plataforma NAU.<br>Prometemos que será rápido!',
+            shortmessage: "Por favor volte mais tarde, tentaremos ser breves.",
+            esttime: "Tempo estimado",
+            message: "Para informações adicionais por favor o site de ajuda ao utilizador em",
+            langchangemessage: "Change language to English",
+            technicalinfo: "Technical information on the state of the NAU",
         }
     };
 
-    const intlElements = ['maintenance-title', 'maintenance-shortmessage', 'maintenance-esttime', 'maintenance-message'];
+    const intlElements = ['maintenance-title', 'maintenance-shortmessage', 'maintenance-esttime', 'maintenance-message', 'maintenance-technicalinfo'];
 
     function getNavigatorLanguage() {
         return navigator.language.split('-')[0] == 'pt' ? 'pt' : 'en';
@@ -187,7 +191,19 @@
         color: var(--email-color);
     }
 
-    .email a:hover {
+    .email,
+    .status {
+        font-size: 1.15rem;
+        color: var(--email-color);
+    }
+
+    .email a,
+    .status a {
+        color: var(--email-color);
+    }
+
+    .email a:hover,
+    .status a:hover {
         color: #ffce35;
         text-decoration-color: #ffce35;
     }
@@ -315,6 +331,9 @@
                 </li>
             </ul>
         </section>
+        <p class="status">
+            <a target="_blank" href="https://status.nau.edu.pt" id="maintenance-technicalinfo">Informação técnica do estado da NAU</a>
+        </p>
     </div>
 </body>
 

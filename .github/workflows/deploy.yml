@@ -1,0 +1,23 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+    - master
+    - main
+
+jobs:
+  ci:
+    name: Deploy to Buckets
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy to all environments
+        run: deploy.sh
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ AWS_SECRET_ACCESS_KEY }}
+    
