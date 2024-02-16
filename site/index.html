@@ -195,7 +195,8 @@
     .social {
         width: 100%;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
+        margin-block-start: 2rem;
     }
 
     .social ul {
@@ -216,22 +217,30 @@
         color: #ffce35;
     }
 
+    .lang-options {
+        text-align: right;
+        padding: 0 3rem;
+    }
+
     .change-lang-link {
-        font-size: 1rem;
+        font-size: 0.9rem;
         cursor: pointer;
         background: none;
         border: none;
         color: rgba(255, 255, 255, 0.9);
-        text-decoration: underline;
     }
 
     .change-lang-link:hover {
         color: #ffce35;
+        text-decoration: underline;
     }
 </style>
 
 <body>
     <div class="container" aria-live="polite">
+        <div class="lang-options">
+            <button id="changeLang" class="change-lang-link" aria-label="Mudar língua para Português">Português</button>
+        </div>
         <section>
             <span class="logo">
                 <svg style="isolation:isolate" viewBox="0 0 500 75" xmlns="http://www.w3.org/2000/svg" width="500"
@@ -291,11 +300,11 @@
                 <div class="contacts">
                     <p><span id="maintenance-message">Para mais informações ou dúvidas sobre a operação a decorrer
                             utilize o serviço de apoio ao utilizador </span> <a
-                            href="https://ajuda.nau.edu.pt">https://ajuda.nau.edu.pt</a></p>
+                            href="https://ajuda.nau.edu.pt">ajuda.nau.edu.pt</a></p>
                 </div>
             </div>
         </section>
-        <p class="website"><a href="https://ajuda.nau.edu.pt">https://ajuda.nau.edu.pt</a></p>
+        <p class="website"><a href="https://ajuda.nau.edu.pt" aria-label="NAU Wiki">ajuda.nau.edu.pt</a></p>
         <section class="social">
             <ul>
                 <li>
@@ -305,7 +314,6 @@
                     <a class="twitter-link" href="https://twitter.com/nau_plataforma" target="_blank">Twitter</a>
                 </li>
             </ul>
-            <button id="changeLang" class="change-lang-link" aria-label="Mudar língua para Português">Português</button>
         </section>
     </div>
 </body>
