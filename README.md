@@ -29,3 +29,8 @@ To check the current maintenance page open:
 | DEV         |  https://shared.static.dev.nau.fccn.pt/maintenance-site/index.html | https://rgw.nau.fccn.pt/nau-dev-shared/maintenance-site/index.html |
 | STAGE       |  https://shared.static.stage.nau.fccn.pt/maintenance-site/index.html | https://rgw.nau.fccn.pt/nau-stage-shared/maintenance-site/index.html |
 | PROD        |  https://shared.static.prod.nau.fccn.pt/maintenance-site/index.html | https://rgw.nau.fccn.pt/nau-prod-shared/maintenance-site/index.html |
+
+
+## Kubernetes
+
+The Kubernetes deployment uses a copy of this maintenance page, instead of using the live version from Ceph S3.
