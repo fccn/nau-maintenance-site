@@ -41,25 +41,28 @@
 
     const intlElements = ['maintenance-title', 'maintenance-shortmessage', 'maintenance-esttime', 'maintenance-message', 'maintenance-technicalinfo'];
 
-    function getNavigatorLanguage() {
-        return navigator.language.split('-')[0] == 'pt' ? 'pt' : 'en';
+    function transformToSupportedLanguage(lang) {
+        const primaryLang = lang.split('-')[0];
+        const supportedLangs = Object.keys(intlTranslations);
+        return supportedLangs.includes(primaryLang) ? primaryLang : supportedLangs[0];
     }
 
     function getCookieValue() {
-        let cookieLang = decodeURIComponent(document.cookie).split(';').find(cookie => cookie.includes('nau-language-preference'));
+        const cookieLang = decodeURIComponent(document.cookie).split(';').find(cookie => cookie.includes('nau-language-preference'));
         return cookieLang ? cookieLang.split('=')[1] : null;
     }
 
     function setLanguage(lang) {
-        currentLanguage = lang;
+        const newLang = transformToSupportedLanguage(lang);
+        currentLanguage = newLang;
 
-        document.documentElement.setAttribute('lang', lang);
-        document.title = `NAU: ${intlTranslations[lang]['title']}`;
-        document.getElementById('changeLang').ariaLabel = intlTranslations[lang]['langchangemessage'];
+        document.documentElement.setAttribute('lang', newLang);
+        document.title = `NAU: ${intlTranslations[newLang]['title']}`;
+        document.getElementById('changeLang').ariaLabel = intlTranslations[newLang]['langchangemessage'];
 
         intlElements.forEach(function (element) {
             let el = document.getElementById(element);
-            el.innerHTML = intlTranslations[lang][element.split('-')[1]];
+            el.innerHTML = intlTranslations[newLang][element.split('-')[1]];
         });
 
     }
@@ -74,7 +77,7 @@
     }
 
     document.addEventListener("DOMContentLoaded", function () {
-        setLanguage(getCookieValue() || getNavigatorLanguage());
+        setLanguage(getCookieValue() || navigator.language);
 
         displayOpDetails();
 
